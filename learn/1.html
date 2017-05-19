@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第一个React</title>
+</head>
+<body>
+    <div id="app"></div>
+    <div id="text"></div>
+    <div id="text2"></div>
+    <div id="text3"></div>
+
+    <script src="../scripts/react.js"></script>
+    <script src="../scripts/react-dom.js"></script>
+    <script>
+        ReactDOM.render(
+            React.DOM.h1(null,"Hello world!"),
+            document.getElementById("app")
+            );
+
+        ReactDOM.render(
+            React.DOM.h1({
+                id:'textId',
+                className:'textClass',
+                htmlFor:'me',
+                style:{color:'red'}
+            },"Text 属性"),
+            document.getElementById("text")
+        );
+
+        ReactDOM.render(
+            React.DOM.h1(null,
+                React.DOM.span(null,'嵌套'),
+                "Hello Word"),
+            document.getElementById("text2")
+        );
+        /*
+        ReactDOM.render(
+            <h1>
+                <span>使用JSX,<span>
+                <b>完成嵌套</b>
+            </h1>,
+            document.getElementById("text3")
+        );
+        */
+    </script>
+</body>
+</html>

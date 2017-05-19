@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件入门</title>
+</head>
+<body>
+    <div id="myComponent"></div>
+    <div id="myComponentProps"></div>
+    <div id="myState"></div>
+
+    <script src="../scripts/react.js"></script>
+    <script src="../scripts/react-dom.js"></script>
+    <script>
+        //定义组件
+        var MyComponent = React.createClass({
+            render:function () {
+                return React.DOM.span(null,'简单的组件');
+            }
+        });
+        //使用组件
+        ReactDOM.render(
+            React.createElement(MyComponent),
+            document.getElementById('myComponent')
+        );
+
+        //组件接收属性
+        var MyComponentProps = React.createClass({
+            propTypes:{//声明传值类型
+                name:React.PropTypes.string.isRequired,
+                address:React.PropTypes.string,
+            },
+            getDefaultProps:function () {//设置默认属性
+                return{
+                    name:'xxxx',
+                    address:'广州'
+                }
+            },
+            render:function () {
+                return React.DOM.span(null,'组件接收属性：' + this.props.name + ',' + this.props.address);
+            }
+        });
+        ReactDOM.render(
+            React.createElement(MyComponentProps,{name:'yexd'}),
+            document.getElementById('myComponentProps')
+        );
+
+        //state
+        var TextAreaCounter = React.createClass({
+            propTypes:{
+                text:React.PropTypes.string,
+            },
+            getDefaultProps:function () {
+                return{
+                    text:'',
+                }
+            },
+            getInitialState:function () {//初始化时执行,作用：把无状态的组件改为有状态的组件
+                return{
+                    text:this.props.text,
+                }
+            },
+            _textChange:function (ev) {//自定义方法，事件监听器，作用：数据更新后改变状态（state）
+              this.setState({
+                  text:ev.target.value,
+              })
+            },
+            render:function(){
+              return React.DOM.div(null,
+                React.DOM.textarea({
+                    //defaultValue:this.props.text,
+                    value:this.state.text,
+                    onChange:this._textChange,
+                }),
+                //React.DOM.h3(null,this.props.text.length)
+                React.DOM.h3(null,this.state.text.length)
+              );
+            }
+        })
+        ReactDOM.render(
+            React.createElement(TextAreaCounter,{
+                text:'test sate',
+            }),
+            document.getElementById('myState')
+        );
+    </script>
+</body>
+</html>
