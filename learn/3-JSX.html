@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSX学习</title>
+</head>
+<body>
+<div id="jsx1"></div>
+<div id="jsx2"></div>
+
+<script src="../scripts/react.js"></script>
+<script src="../scripts/react-dom.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+<script type="text/babel">
+    var i = 1;
+    var myStyle = {//React推荐使用内联样式，camelCase语法设置内联样式，px会自动添加
+        padding: 100
+    }
+    ReactDOM.render(
+    <section style={myStyle}>
+        {/* 这是注释,注释也不可用写在section外，否则报错 */}
+        <h1>在jsx中使用JavaScript表达式：{1+2}，{i == 1? 'true':'false'}</h1>
+        <h2>分析</h2>
+        <ul>
+            <li>JavaScript 表达式写在大括号中；</li>
+            <li>在jsx中不能使用if else语句，可以使用“三元运算”来代替；</li>
+        </ul>
+    </section>,
+        document.getElementById("jsx1")
+    );
+
+    var arr = [<h1>我是数组</h1>,<span>我是数组</span>, <p>我是数组</p>];
+    ReactDOM.render(
+            <section>{arr}</section>,
+        document.getElementById("jsx2")
+    );
+
+</script>
+</body>
+</html>
+
