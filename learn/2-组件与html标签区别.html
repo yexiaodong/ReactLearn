@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React组件与HTML标签</title>
+    <style>
+        .foo{ color:red }
+
+    </style>
+</head>
+<body>
+    <div id="html"></div>
+    <div id="component"></div>
+
+    <h1>注意</h1>
+    <ul>
+        <li>要渲染html标签，只需在jsx里使用小写字母的标签名。</li>
+        <li>要渲染React组件，只需创建一个大写字母开头的本地变量。</li>
+        <li>React 的 JSX 使用大、小写的约定来区分本地组件的类和 HTML 标签</li>
+    </ul>
+
+    <script src="../scripts/react.js"></script>
+    <script src="../scripts/react-dom.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <script type="text/babel">
+        //HTML标签
+        var myHtml = <div className="foo">我是HTML</div>;
+        ReactDOM.render(myHtml,document.getElementById('html'));
+
+        //React组件
+        var MyComponent = React.createClass({
+            render:function () {
+                return React.DOM.span(null,'简单的组件');
+            }
+        });
+        var myElement = <MyComponent someProperty={true}/>
+        ReactDOM.render(myElement,document.getElementById('component'));
+    </script>
+</body>
+</html>
